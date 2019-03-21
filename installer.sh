@@ -7,7 +7,7 @@ Java(){
 	sudo chmod -R 777 /opt/java/*
 	sudo update-alternatives --install /usr/bin/java java /opt/java/jre1.8.0_201/bin/java 100
 	sudo update-alternatives --install /usr/bin/javaws javaws /opt/java/jre1.8.0_201/bin/javaws 100
-	sudo chmod a+x /usr/bin/java && sudo chmod a+x /usr/bin/javaws && sudo chown -R root:root /opt/java/jre1.8.0_201 && sudo update-alternatives --config java && sudo apt-get update && clear && echo "java instalado com sucesso..." && echo "$(date +%F\ %T) Java instalado" >> /opt/Relatorio.txt && java -version 2> /opt/java.txt && head -1 java.txt | awk -F"0" '{print substr($1,15,12)}' > /opt/atual.txt
+	sudo chmod a+x /usr/bin/java && sudo chmod a+x /usr/bin/javaws && sudo chown -R root:root /opt/java/jre1.8.0_201 && sudo update-alternatives --config java && sudo apt-get update && clear && echo "java instalado com sucesso..." && echo "$(date +%F\ %T) Java instalado" >> /opt/Relatorio.txt && java -version 2> /opt/java.txt && head -1 /opt/java.txt | awk -F"0" '{print substr($1,17,1)}' > /opt/atual.txt
 }
 
 #-----------------------------FUNÇÃO PARA INSTALAR O GESTOR-----------------------------#
@@ -35,9 +35,10 @@ sudo chmod -R 777 /opt/Relatorio.txt;
 java -version 2> java.txt
 sudo chmod +x java.txt
 sudo chmod -R 777 /opt/java.txt
-head -1 java.txt | awk -F"0" '{print substr($1,15,12)}' > atual.txt
+head -1 /opt/java.txt | awk -F"0" '{print substr($1,17,1)}' > atual.txt
 sudo chmod +x atual.txt
 sudo chmod -R 777 /opt/atual.txt
+versaoatual=$(cat atual.txt)
 
 
 
@@ -47,11 +48,11 @@ sudo apt install unzip
 sudo chmod +x java.txt
 echo "Verificando java..."
 
-if [ "$atual" -eq "1.8." ];
+if [[ "$versaoatual" = *8* ]];
  then
 	echo "Verificando gestor..."
  else
-	echo "Java";
+	Java;
 fi
 
 if [ ! -d "$gestor" ];
@@ -69,6 +70,12 @@ if [ ! -d "$player" ];
 fi
 
 sudo chmod -R 777 /opt/* && sudo chmod +x /opt/*;
-sudo apt-get upgrade && sudo apt-get update;
 echo "$(date +%F\ %T) Ultima verificação" >> /opt/Relatorio.txt;
+java -version 2> java.txt
+sudo chmod +x java.txt
+sudo chmod -R 777 /opt/java.txt
+head -1 /opt/java.txt | awk -F"0" '{print substr($1,17,1)}' > atual.txt
+sudo chmod +x atual.txt
+sudo chmod -R 777 /opt/atual.txt
+versaoatual=$(cat atual.txt)
 
