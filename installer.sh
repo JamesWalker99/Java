@@ -7,7 +7,7 @@ Java(){
 	sudo chmod -R 777 /opt/java/*
 	sudo update-alternatives --install /usr/bin/java java /opt/java/jre1.8.0_201/bin/java 100
 	sudo update-alternatives --install /usr/bin/javaws javaws /opt/java/jre1.8.0_201/bin/javaws 100
-	sudo chmod a+x /usr/bin/java && sudo chmod a+x /usr/bin/javaws && sudo chown -R root:root /opt/java/jre1.8.0_201 && sudo update-alternatives --config java && sudo apt-get update && clear && echo "java instalado com sucesso..." && echo "$(date +%F\ %T) Java instalado" >> /opt/Relatorio.txt && java -version 2> /opt/java.txt && head -1 /opt/java.txt | awk -F"0" '{print substr($1,17,1)}' > /opt/atual.txt
+	sudo chmod a+x /usr/bin/java && sudo chmod a+x /usr/bin/javaws && sudo chown -R root:root /opt/java/jre1.8.0_201 && sudo update-alternatives --config java && sudo apt-get update && clear && echo "java instalado com sucesso..." && echo "$(date +%F\ %T) Java instalado" >> /opt/Relatorio.txt
 }
 
 #-----------------------------FUNÇÃO PARA INSTALAR O GESTOR-----------------------------#
@@ -28,7 +28,7 @@ player="/opt/INHD";
 echo "Preparando...";
 sudo chmod -R 777 /opt && cd /opt;
 
-# cat > Relatorio.txt
+echo "$(date +%F\ %T) Ultima verificação" >> /opt/Relatorio.txt;
 sudo chmod +x Relatorio.txt;
 sudo chmod -R 777 /opt/Relatorio.txt;
 
@@ -70,7 +70,6 @@ if [ ! -d "$player" ];
 fi
 
 sudo chmod -R 777 /opt/* && sudo chmod +x /opt/*;
-echo "$(date +%F\ %T) Ultima verificação" >> /opt/Relatorio.txt;
 java -version 2> java.txt
 sudo chmod +x java.txt
 sudo chmod -R 777 /opt/java.txt
